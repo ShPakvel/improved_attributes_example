@@ -1,0 +1,14 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:title]} label="Title" type="text" />
+  <.input field={f[:content]} label="Content" type="textarea" required />
+  <.input field={f[:public]} label="Public" type="checkbox" />
+  <.input field={f[:topics]} label="Topics" type="number" />
+  <.input field={f[:reviewed]} label="Reviewed" type="datetime-local" />
+  <.input field={f[:tags]} label="Tags" type="select" options={["tags value", "updated tags value"]} multiple />
+  <:actions>
+    <.button>Save Post</.button>
+  </:actions>
+</.simple_form>

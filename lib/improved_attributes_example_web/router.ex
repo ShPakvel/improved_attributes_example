@@ -20,6 +20,7 @@ defmodule ImprovedAttributesExampleWeb.Router do
     get "/", PageController, :home
 
     resources "/products", ProductController
+    resources "/blog_posts", PostController
   end
 
   # Other scopes may use custom stacks.

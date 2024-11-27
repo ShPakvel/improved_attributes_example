@@ -1,0 +1,22 @@
+<.header>
+  Post <%= @post.id %>
+  <:subtitle>This is a post record from your database.</:subtitle>
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/blog_posts/#{@post}/edit"}>
+        Edit post
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @post.title %></:item>
+  <:item title="Content"><%= @post.content %></:item>
+  <:item title="Public"><%= @post.public %></:item>
+  <:item title="Topics"><%= @post.topics %></:item>
+  <:item title="Reviewed"><%= @post.reviewed %></:item>
+  <:item title="Tags"><%= array_values(@post.tags) %></:item>
+</.list>
+
+<.back navigate={~p"/blog_posts"}>Back to blog_posts</.back>

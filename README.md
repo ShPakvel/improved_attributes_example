@@ -82,3 +82,54 @@ Running ExUnit with seed: 268482, max_cases: 24
 Finished in 0.3 seconds (0.1s async, 0.2s sync)
 21 tests, 0 failures
 ```
+
+### Commit 2
+
+```bash
+$ mix phx.gen.html Blog Post blog_posts title content:text:* public:boolean:default,true topics:integer:default,1 reviewed:datetime tags:array --binary-id
+* creating lib/improved_attributes_example/blog/post.ex
+* creating priv/repo/migrations/20241127192509_create_blog_posts.exs
+* creating lib/improved_attributes_example/blog.ex
+* injecting lib/improved_attributes_example/blog.ex
+* creating test/improved_attributes_example/blog_test.exs
+* injecting test/improved_attributes_example/blog_test.exs
+* creating test/support/fixtures/blog_fixtures.ex
+* injecting test/support/fixtures/blog_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/post_controller.ex
+* creating lib/improved_attributes_example_web/controllers/post_html/edit.html.heex
+* creating lib/improved_attributes_example_web/controllers/post_html/index.html.heex
+* creating lib/improved_attributes_example_web/controllers/post_html/new.html.heex
+* creating lib/improved_attributes_example_web/controllers/post_html/show.html.heex
+* creating lib/improved_attributes_example_web/controllers/post_html/post_form.html.heex
+* creating lib/improved_attributes_example_web/controllers/post_html.ex
+* creating test/improved_attributes_example_web/controllers/post_controller_test.exs
+
+Add the resource to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/blog_posts", PostController
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+21:25:52.879 [info] == Running 20241127192509 ImprovedAttributesExample.Repo.Migrations.CreateBlogPosts.change/0 forward
+
+21:25:52.883 [info] create table blog_posts
+
+21:25:52.892 [info] == Migrated 20241127192509 in 0.0s
+
+$ mix test
+Compiling 2 files (.ex)
+Compiling 2 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 776002, max_cases: 24
+
+.....................................
+Finished in 0.7 seconds (0.2s async, 0.5s sync)
+37 tests, 0 failures
+```

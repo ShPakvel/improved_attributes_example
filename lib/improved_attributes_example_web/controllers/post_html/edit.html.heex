@@ -1,0 +1,8 @@
+<.header>
+  Edit Post <%= @post.id %>
+  <:subtitle>Use this form to manage post records in your database.</:subtitle>
+</.header>
+
+<.post_form changeset={@changeset} action={~p"/blog_posts/#{@post}"} />
+
+<.back navigate={~p"/blog_posts"}>Back to blog_posts</.back>
