@@ -187,3 +187,67 @@ Running ExUnit with seed: 807892, max_cases: 24
 Finished in 0.5 seconds (0.1s async, 0.3s sync)
 53 tests, 0 failures
 ```
+
+### Commit 4
+
+```bash
+$ mix phx.gen.html Catalog Comment comments body:string:size,303:* product_id:references:*:on_delete,delete_all post_id:references:Blog.Post --binary-id
+You are generating into an existing context.
+
+The ImprovedAttributesExample.Catalog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/catalog/comment.ex
+* creating priv/repo/migrations/20241127221910_create_comments.exs
+* injecting lib/improved_attributes_example/catalog.ex
+* injecting test/improved_attributes_example/catalog_test.exs
+* injecting test/support/fixtures/catalog_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/comment_controller.ex
+* creating lib/improved_attributes_example_web/controllers/comment_html/edit.html.heex
+* creating lib/improved_attributes_example_web/controllers/comment_html/index.html.heex
+* creating lib/improved_attributes_example_web/controllers/comment_html/new.html.heex
+* creating lib/improved_attributes_example_web/controllers/comment_html/show.html.heex
+* creating lib/improved_attributes_example_web/controllers/comment_html/comment_form.html.heex
+* creating lib/improved_attributes_example_web/controllers/comment_html.ex
+* creating test/improved_attributes_example_web/controllers/comment_controller_test.exs
+
+Add the resource to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/comments", CommentController
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+00:19:59.339 [info] == Running 20241127221910 ImprovedAttributesExample.Repo.Migrations.CreateComments.change/0 forward
+
+00:19:59.344 [info] create table comments
+
+00:19:59.356 [info] create index comments_post_id_index
+
+00:19:59.358 [info] create index comments_product_id_index
+
+00:19:59.363 [info] == Migrated 20241127221910 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 886935, max_cases: 24
+
+.....................................................................
+Finished in 0.6 seconds (0.2s async, 0.4s sync)
+69 tests, 0 failures
+```

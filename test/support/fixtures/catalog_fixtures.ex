@@ -21,4 +21,23 @@ defmodule ImprovedAttributesExample.CatalogFixtures do
 
     product
   end
+
+  @doc """
+  Generate a comment.
+  """
+  def comment_fixture(attrs \\ %{}) do
+    post = ImprovedAttributesExample.BlogFixtures.post_fixture()
+    product = product_fixture()
+
+    {:ok, comment} =
+      attrs
+      |> Enum.into(%{
+        body: "body value",
+        post_id: post.id,
+        product_id: product.id
+      })
+      |> ImprovedAttributesExample.Catalog.create_comment()
+
+    comment
+  end
 end

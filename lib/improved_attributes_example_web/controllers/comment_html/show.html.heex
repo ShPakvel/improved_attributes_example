@@ -1,0 +1,19 @@
+<.header>
+  Comment <%= @comment.id %>
+  <:subtitle>This is a comment record from your database.</:subtitle>
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/comments/#{@comment}/edit"}>
+        Edit comment
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Body"><%= @comment.body %></:item>
+  <:item title="Product"><%= @comment.product_id %></:item>
+  <:item title="Post"><%= @comment.post_id %></:item>
+</.list>
+
+<.back navigate={~p"/comments"}>Back to comments</.back>
