@@ -1,0 +1,26 @@
+<.header>
+  Note <%= @note.id %>
+  <:subtitle>This is a note record from your database.</:subtitle>
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/notes/#{@note}/edit"}>
+        Edit note
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Body"><%= @note.body %></:item>
+  <:item title="Review day"><%= @note.review_day %></:item>
+  <:item title="Product"><%= @note.product_id %></:item>
+  <:item title="Post"><%= @note.post_id %></:item>
+  <:item title="Book"><%= @note.book_id %></:item>
+  <:item title="Data"><%= @note.data %></:item>
+  <:item title="Meta"><%= array_values(@note.meta) %></:item>
+  <:item title="Points"><%= array_values(@note.points) %></:item>
+  <:item title="Status"><%= @note.status %></:item>
+  <:item title="Tags"><%= array_values(@note.tags) %></:item>
+</.list>
+
+<.back navigate={~p"/notes"}>Back to notes</.back>

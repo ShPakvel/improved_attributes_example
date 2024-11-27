@@ -23,6 +23,7 @@ defmodule ImprovedAttributesExampleWeb.Router do
     resources "/blog_posts", PostController
     resources "/books", BookController
     resources "/comments", CommentController
+    resources "/notes", NoteController
   end
 
   # Other scopes may use custom stacks.

@@ -251,3 +251,93 @@ Running ExUnit with seed: 886935, max_cases: 24
 Finished in 0.6 seconds (0.2s async, 0.4s sync)
 69 tests, 0 failures
 ```
+
+### Commit 5
+
+```bash
+$ mix phx.gen.html Blog Note notes body:text:unique review_day:date:unique product_id:references:Catalog.Product:unique post_id:references book_id:references:assoc,manual:General.Library.Book:column,isbn data:any:virtual meta:[array,string]:virtual points:[array,integer] status:enum:[draft,actual,archived] tags:[array,enum]:[[music,1],[dance,2],[movie,3]]
+At least one attribute has to be specified as required.
+Use option `required` or its alias `*`.
+
+Examples:
+
+    title:string:required
+    name:string:*:unique
+
+None of the given attributes are set to be required,
+Hence first attribute `body:text:unique` is going to be required.
+
+Proceed with chosen required attribute? [Yn] Y
+You are generating into an existing context.
+
+The ImprovedAttributesExample.Blog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/blog/note.ex
+* creating priv/repo/migrations/20241127223001_create_notes.exs
+* injecting lib/improved_attributes_example/blog.ex
+* injecting test/improved_attributes_example/blog_test.exs
+* injecting test/support/fixtures/blog_fixtures.ex
+
+Some of the generated database columns are unique. Please provide
+unique implementations for the following fixture function(s) in
+test/support/fixtures/blog_fixtures.ex:
+
+    def unique_note_review_day do
+      raise "implement the logic to generate a unique note review_day"
+    end
+
+* creating lib/improved_attributes_example_web/controllers/note_controller.ex
+* creating lib/improved_attributes_example_web/controllers/note_html/edit.html.heex
+* creating lib/improved_attributes_example_web/controllers/note_html/index.html.heex
+* creating lib/improved_attributes_example_web/controllers/note_html/new.html.heex
+* creating lib/improved_attributes_example_web/controllers/note_html/show.html.heex
+* creating lib/improved_attributes_example_web/controllers/note_html/note_form.html.heex
+* creating lib/improved_attributes_example_web/controllers/note_html.ex
+* creating test/improved_attributes_example_web/controllers/note_controller_test.exs
+
+Add the resource to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/notes", NoteController
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+00:31:46.509 [info] == Running 20241127223001 ImprovedAttributesExample.Repo.Migrations.CreateNotes.change/0 forward
+
+00:31:46.513 [info] create table notes
+
+00:31:46.520 [info] create index notes_body_index
+
+00:31:46.522 [info] create index notes_review_day_index
+
+00:31:46.524 [info] create index notes_book_id_index
+
+00:31:46.526 [info] create index notes_post_id_index
+
+00:31:46.527 [info] create index notes_product_id_index
+
+00:31:46.531 [info] == Migrated 20241127223001 in 0.0s
+
+$ mix test
+Compiling 1 file (.ex)
+Running ExUnit with seed: 120609, max_cases: 24
+
+.....................................................................................
+Finished in 2.4 seconds (0.8s async, 1.6s sync)
+85 tests, 0 failures
+```

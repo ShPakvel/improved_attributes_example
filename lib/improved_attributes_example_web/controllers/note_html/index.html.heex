@@ -1,0 +1,38 @@
+<.header>
+  Listing Notes
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/notes/new"}>
+        New Note
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.table
+  id="notes"
+  rows={@notes}
+  row_click={&JS.navigate(~p"/notes/#{&1}")}
+>
+  <:col :let={note} label="Body"><%= note.body %></:col>
+  <:col :let={note} label="Review day"><%= note.review_day %></:col>
+  <:col :let={note} label="Product"><%= note.product_id %></:col>
+  <:col :let={note} label="Post"><%= note.post_id %></:col>
+  <:col :let={note} label="Book"><%= note.book_id %></:col>
+  <:col :let={note} label="Data"><%= note.data %></:col>
+  <:col :let={note} label="Meta"><%= array_values(note.meta) %></:col>
+  <:col :let={note} label="Points"><%= array_values(note.points) %></:col>
+  <:col :let={note} label="Status"><%= note.status %></:col>
+  <:col :let={note} label="Tags"><%= array_values(note.tags) %></:col>
+  <:action :let={note}>
+    <div class="sr-only">
+      <.link navigate={~p"/notes/#{note}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/notes/#{note}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={note}>
+    <.link href={~p"/notes/#{note}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

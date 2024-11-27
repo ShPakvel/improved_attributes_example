@@ -84,4 +84,116 @@ defmodule ImprovedAttributesExample.BlogTest do
       assert %Ecto.Changeset{} = Blog.change_post(post)
     end
   end
+
+  describe "notes" do
+    alias ImprovedAttributesExample.Blog.Note
+
+    import ImprovedAttributesExample.BlogFixtures
+
+    @invalid_attrs %{body: nil, data: nil, meta: nil, points: nil, review_day: nil, status: nil, tags: nil, book_id: nil, post_id: nil, product_id: nil}
+
+    test "list_notes/0 returns all notes" do
+      note = note_fixture()
+
+      # NOTE: Virtual fields updated to defaults or nil before comparison.
+      note = %{note | data: nil, meta: nil}
+      assert Blog.list_notes() == [note]
+    end
+
+    test "get_note!/1 returns the note with given id" do
+      note = note_fixture()
+
+      # NOTE: Virtual fields updated to defaults or nil before comparison.
+      note = %{note | data: nil, meta: nil}
+      assert Blog.get_note!(note.id) == note
+    end
+
+    test "create_note/1 with valid data creates a note" do
+      manual = ImprovedAttributesExample.General.LibraryFixtures.book_fixture()
+      post = post_fixture()
+      product = ImprovedAttributesExample.CatalogFixtures.product_fixture()
+
+      create_attrs = %{
+        body: "body value",
+        data: "data value",
+        meta: ["meta value"],
+        points: [142],
+        review_day: ~D[2024-11-26],
+        status: :draft,
+        tags: [:music],
+        book_id: manual.isbn,
+        post_id: post.id,
+        product_id: product.id
+      }
+
+      assert {:ok, %Note{} = note} = Blog.create_note(create_attrs)
+      assert note.body == "body value"
+      assert note.data == "data value"
+      assert note.meta == ["meta value"]
+      assert note.points == [142]
+      assert note.review_day == ~D[2024-11-26]
+      assert note.status == :draft
+      assert note.tags == [:music]
+      assert note.book_id == manual.isbn
+      assert note.post_id == post.id
+      assert note.product_id == product.id
+    end
+
+    test "create_note/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Blog.create_note(@invalid_attrs)
+    end
+
+    test "update_note/2 with valid data updates the note" do
+      note = note_fixture()
+
+      manual = ImprovedAttributesExample.General.LibraryFixtures.book_fixture()
+      post = post_fixture()
+      product = ImprovedAttributesExample.CatalogFixtures.product_fixture()
+
+      update_attrs = %{
+        body: "updated body value",
+        data: "updated data value",
+        meta: ["updated meta value"],
+        points: [303],
+        review_day: ~D[2024-11-27],
+        status: :actual,
+        tags: [:dance],
+        book_id: manual.isbn,
+        post_id: post.id,
+        product_id: product.id
+      }
+
+      assert {:ok, %Note{} = note} = Blog.update_note(note, update_attrs)
+      assert note.body == "updated body value"
+      assert note.data == "updated data value"
+      assert note.meta == ["updated meta value"]
+      assert note.points == [303]
+      assert note.review_day == ~D[2024-11-27]
+      assert note.status == :actual
+      assert note.tags == [:dance]
+      assert note.book_id == manual.isbn
+      assert note.post_id == post.id
+      assert note.product_id == product.id
+    end
+
+    test "update_note/2 with invalid data returns error changeset" do
+      note = note_fixture()
+      assert {:error, %Ecto.Changeset{}} = Blog.update_note(note, @invalid_attrs)
+
+      # NOTE: Virtual fields updated to defaults or nil before comparison.
+      note = %{note | data: nil, meta: nil}
+      assert note == Blog.get_note!(note.id)
+    end
+
+    test "delete_note/1 deletes the note" do
+      note = note_fixture()
+      assert {:ok, %Note{}} = Blog.delete_note(note)
+      assert_raise Ecto.NoResultsError, fn -> Blog.get_note!(note.id) end
+    end
+
+    test "change_note/1 returns a note changeset" do
+      note = note_fixture()
+      assert %Ecto.Changeset{} = Blog.change_note(note)
+    end
+  end
 end
