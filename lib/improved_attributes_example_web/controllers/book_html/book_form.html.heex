@@ -1,0 +1,15 @@
+<.simple_form :let={f} for={@changeset} action={@action}>
+  <.error :if={@changeset.action}>
+    Oops, something went wrong! Please check the errors below.
+  </.error>
+  <.input field={f[:name]} label="Name" type="text" required />
+  <.input field={f[:isbn]} label="Isbn" type="text" required />
+  <.input field={f[:index_page]} label="Index page" type="number" />
+  <.input field={f[:print_size]} label="Print size" type="number" step="any" />
+  <.input field={f[:rate]} label="Rate" type="number" step="any" />
+  <.input field={f[:free]} label="Free" type="checkbox" />
+  <.input field={f[:author_real_name]} label="Author real name" type="text" />
+  <:actions>
+    <.button>Save Book</.button>
+  </:actions>
+</.simple_form>

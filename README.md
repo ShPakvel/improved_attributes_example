@@ -133,3 +133,57 @@ Running ExUnit with seed: 776002, max_cases: 24
 Finished in 0.7 seconds (0.2s async, 0.5s sync)
 37 tests, 0 failures
 ```
+
+### Commit 3
+
+```bash
+$ mix phx.gen.html General.Library Book books name:string:*:index isbn:string:required:unique index_page:integer:default,1:* print_size:decimal:default,13.45:* rate:float:default,5.0:* free:boolean author_real_name:string:redact
+* creating lib/improved_attributes_example/general/library/book.ex
+* creating priv/repo/migrations/20241127221602_create_books.exs
+* creating lib/improved_attributes_example/general/library.ex
+* injecting lib/improved_attributes_example/general/library.ex
+* creating test/improved_attributes_example/general/library_test.exs
+* injecting test/improved_attributes_example/general/library_test.exs
+* creating test/support/fixtures/general/library_fixtures.ex
+* injecting test/support/fixtures/general/library_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/book_controller.ex
+* creating lib/improved_attributes_example_web/controllers/book_html/edit.html.heex
+* creating lib/improved_attributes_example_web/controllers/book_html/index.html.heex
+* creating lib/improved_attributes_example_web/controllers/book_html/new.html.heex
+* creating lib/improved_attributes_example_web/controllers/book_html/show.html.heex
+* creating lib/improved_attributes_example_web/controllers/book_html/book_form.html.heex
+* creating lib/improved_attributes_example_web/controllers/book_html.ex
+* creating test/improved_attributes_example_web/controllers/book_controller_test.exs
+
+Add the resource to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/books", BookController
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+00:17:13.227 [info] == Running 20241127221602 ImprovedAttributesExample.Repo.Migrations.CreateBooks.change/0 forward
+
+00:17:13.230 [info] create table books
+
+00:17:13.243 [info] create index books_isbn_index
+
+00:17:13.245 [info] create index books_name_index
+
+00:17:13.248 [info] == Migrated 20241127221602 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 807892, max_cases: 24
+
+.....................................................
+Finished in 0.5 seconds (0.1s async, 0.3s sync)
+53 tests, 0 failures
+```

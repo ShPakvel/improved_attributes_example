@@ -1,0 +1,23 @@
+<.header>
+  Book <%= @book.id %>
+  <:subtitle>This is a book record from your database.</:subtitle>
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/books/#{@book}/edit"}>
+        Edit book
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @book.name %></:item>
+  <:item title="Isbn"><%= @book.isbn %></:item>
+  <:item title="Index page"><%= @book.index_page %></:item>
+  <:item title="Print size"><%= @book.print_size %></:item>
+  <:item title="Rate"><%= @book.rate %></:item>
+  <:item title="Free"><%= @book.free %></:item>
+  <:item title="Author real name"><%= @book.author_real_name %></:item>
+</.list>
+
+<.back navigate={~p"/books"}>Back to books</.back>

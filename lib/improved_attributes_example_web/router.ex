@@ -21,6 +21,7 @@ defmodule ImprovedAttributesExampleWeb.Router do
 
     resources "/products", ProductController
     resources "/blog_posts", PostController
+    resources "/books", BookController
   end
 
   # Other scopes may use custom stacks.

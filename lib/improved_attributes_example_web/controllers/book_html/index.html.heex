@@ -1,0 +1,35 @@
+<.header>
+  Listing Books
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/books/new"}>
+        New Book
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.table
+  id="books"
+  rows={@books}
+  row_click={&JS.navigate(~p"/books/#{&1}")}
+>
+  <:col :let={book} label="Name"><%= book.name %></:col>
+  <:col :let={book} label="Isbn"><%= book.isbn %></:col>
+  <:col :let={book} label="Index page"><%= book.index_page %></:col>
+  <:col :let={book} label="Print size"><%= book.print_size %></:col>
+  <:col :let={book} label="Rate"><%= book.rate %></:col>
+  <:col :let={book} label="Free"><%= book.free %></:col>
+  <:col :let={book} label="Author real name"><%= book.author_real_name %></:col>
+  <:action :let={book}>
+    <div class="sr-only">
+      <.link navigate={~p"/books/#{book}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/books/#{book}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={book}>
+    <.link href={~p"/books/#{book}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>
