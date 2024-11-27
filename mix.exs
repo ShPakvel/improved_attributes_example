@@ -32,7 +32,9 @@ defmodule ImprovedAttributesExample.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.7.14"},
+      # {:phoenix, "~> 1.7.14"},
+      {:phoenix,
+       github: "ShPakvel/phoenix", branch: "generators_attributes_improvement", override: true},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
@@ -75,7 +77,10 @@ defmodule ImprovedAttributesExample.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind improved_attributes_example", "esbuild improved_attributes_example"],
+      "assets.build": [
+        "tailwind improved_attributes_example",
+        "esbuild improved_attributes_example"
+      ],
       "assets.deploy": [
         "tailwind improved_attributes_example --minify",
         "esbuild improved_attributes_example --minify",
