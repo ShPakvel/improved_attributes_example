@@ -1,0 +1,21 @@
+<.header>
+  Product <%= @product.id %>
+  <:subtitle>This is a product record from your database.</:subtitle>
+  <:actions>
+    <.button phx-click={JS.dispatch("click", to: {:inner, "a"})}>
+      <.link href={~p"/products/#{@product}/edit"}>
+        Edit product
+      </.link>
+    </.button>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @product.name %></:item>
+  <:item title="Description"><%= @product.description %></:item>
+  <:item title="Price"><%= @product.price %></:item>
+  <:item title="Rate"><%= @product.rate %></:item>
+  <:item title="Code"><%= @product.code %></:item>
+</.list>
+
+<.back navigate={~p"/products"}>Back to products</.back>
