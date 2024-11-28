@@ -24,6 +24,11 @@ defmodule ImprovedAttributesExampleWeb.Router do
     resources "/books", BookController
     resources "/comments", CommentController
     resources "/notes", NoteController
+
+    live "/live_products", LiveProductLive.Index, :index
+    live "/live_products/new", LiveProductLive.Form, :new
+    live "/live_products/:id", LiveProductLive.Show, :show
+    live "/live_products/:id/edit", LiveProductLive.Form, :edit
   end
 
   # Other scopes may use custom stacks.
