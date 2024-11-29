@@ -603,3 +603,78 @@ Finished in 1.2 seconds (0.3s async, 0.9s sync)
 ```
 
 </details>
+
+#### Commit 9
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.live LiveCatalog LiveComment live_comments body:string:size,303:* live_product_id:references:*:on_delete,delete_all live_post_id:references:LiveBlog.LivePost --binary-id
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.live LiveCatalog LiveComment live_comments body:string:size,303:* live_product_id:references:*:on_delete,delete_all live_post_id:references:LiveBlog.LivePost --binary-id
+You are generating into an existing context.
+
+The ImprovedAttributesExample.LiveCatalog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/live_catalog/live_comment.ex
+* creating priv/repo/migrations/20241129000942_create_live_comments.exs
+* injecting lib/improved_attributes_example/live_catalog.ex
+* injecting test/improved_attributes_example/live_catalog_test.exs
+* injecting test/support/fixtures/live_catalog_fixtures.ex
+* creating lib/improved_attributes_example_web/live/live_comment_live/show.ex
+* creating lib/improved_attributes_example_web/live/live_comment_live/index.ex
+* creating lib/improved_attributes_example_web/live/live_comment_live/form.ex
+* creating test/improved_attributes_example_web/live/live_comment_live_test.exs
+
+Add the live routes to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    live "/live_comments", LiveCommentLive.Index, :index
+    live "/live_comments/new", LiveCommentLive.Form, :new
+    live "/live_comments/:id", LiveCommentLive.Show, :show
+    live "/live_comments/:id/edit", LiveCommentLive.Form, :edit
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+
+02:10:09.186 [info] == Running 20241129000942 ImprovedAttributesExample.Repo.Migrations.CreateLiveComments.change/0 forward
+
+02:10:09.188 [info] create table live_comments
+
+02:10:09.196 [info] create index live_comments_live_post_id_index
+
+02:10:09.199 [info] create index live_comments_live_product_id_index
+
+02:10:09.203 [info] == Migrated 20241129000942 in 0.0s
+
+$ mix test
+Compiling 7 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 430727, max_cases: 24
+
+.............................................................................................................................................
+Finished in 1.5 seconds (0.3s async, 1.1s sync)
+141 tests, 0 failures
+```
+
+</details>

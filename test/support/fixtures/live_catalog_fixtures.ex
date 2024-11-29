@@ -21,4 +21,23 @@ defmodule ImprovedAttributesExample.LiveCatalogFixtures do
 
     live_product
   end
+
+  @doc """
+  Generate a live_comment.
+  """
+  def live_comment_fixture(attrs \\ %{}) do
+    live_post = ImprovedAttributesExample.LiveBlogFixtures.live_post_fixture()
+    live_product = live_product_fixture()
+
+    {:ok, live_comment} =
+      attrs
+      |> Enum.into(%{
+        body: "body value",
+        live_post_id: live_post.id,
+        live_product_id: live_product.id
+      })
+      |> ImprovedAttributesExample.LiveCatalog.create_live_comment()
+
+    live_comment
+  end
 end
