@@ -477,3 +477,64 @@ Finished in 1.0 seconds (0.2s async, 0.8s sync)
 ```
 
 </details>
+
+#### Commit 7
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.live LiveBlog LivePost live_blog_posts title content:text:* public:boolean:default,true topics:integer:default,1 reviewed:datetime tags:array --binary-id
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.live LiveBlog LivePost live_blog_posts title content:text:* public:boolean:default,true topics:integer:default,1 reviewed:datetime tags:array --binary-id
+* creating lib/improved_attributes_example/live_blog/live_post.ex
+* creating priv/repo/migrations/20241129000000_create_live_blog_posts.exs
+* creating lib/improved_attributes_example/live_blog.ex
+* injecting lib/improved_attributes_example/live_blog.ex
+* creating test/improved_attributes_example/live_blog_test.exs
+* injecting test/improved_attributes_example/live_blog_test.exs
+* creating test/support/fixtures/live_blog_fixtures.ex
+* injecting test/support/fixtures/live_blog_fixtures.ex
+* creating lib/improved_attributes_example_web/live/live_post_live/show.ex
+* creating lib/improved_attributes_example_web/live/live_post_live/index.ex
+* creating lib/improved_attributes_example_web/live/live_post_live/form.ex
+* creating test/improved_attributes_example_web/live/live_post_live_test.exs
+
+Add the live routes to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    live "/live_blog_posts", LivePostLive.Index, :index
+    live "/live_blog_posts/new", LivePostLive.Form, :new
+    live "/live_blog_posts/:id", LivePostLive.Show, :show
+    live "/live_blog_posts/:id/edit", LivePostLive.Form, :edit
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+
+02:01:20.917 [info] == Running 20241129000000 ImprovedAttributesExample.Repo.Migrations.CreateLiveBlogPosts.change/0 forward
+
+02:01:20.918 [info] create table live_blog_posts
+
+02:01:20.928 [info] == Migrated 20241129000000 in 0.0s
+
+$ mix test
+Compiling 7 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 109880, max_cases: 24
+
+.................................................................................................................
+Finished in 1.1 seconds (0.2s async, 0.9s sync)
+113 tests, 0 failures
+```
+
+</details>
