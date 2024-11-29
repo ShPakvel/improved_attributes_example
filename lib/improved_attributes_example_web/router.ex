@@ -48,9 +48,11 @@ defmodule ImprovedAttributesExampleWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ImprovedAttributesExampleWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", ImprovedAttributesExampleWeb do
+    pipe_through :api
+
+    resources "/api_products", ApiProductController, except: [:new, :edit]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:improved_attributes_example, :dev_routes) do

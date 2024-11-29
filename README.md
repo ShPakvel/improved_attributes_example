@@ -779,3 +779,76 @@ Finished in 1.8 seconds (0.3s async, 1.4s sync)
 ```
 
 </details>
+
+### Json generators
+
+#### Commit 11
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.json ApiCatalog ApiProduct api_products name description:text price:decimal:precision,10:scale,5:default,21.98 rate:float:default,5.0 code:integer:default,1234
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.json ApiCatalog ApiProduct api_products name description:text price:decimal:precision,10:scale,5:default,21.98 rate:float:default,5.0 code:integer:default,1234
+At least one attribute has to be specified as required.
+Use option `required` or its alias `*`.
+
+Examples:
+
+    title:string:required
+    name:string:*:unique
+
+None of the given attributes are set to be required,
+Hence first attribute `name` is going to be required.
+
+Proceed with chosen required attribute? [Yn] Y
+* creating lib/improved_attributes_example/api_catalog/api_product.ex
+* creating priv/repo/migrations/20241129001804_create_api_products.exs
+* creating lib/improved_attributes_example/api_catalog.ex
+* injecting lib/improved_attributes_example/api_catalog.ex
+* creating test/improved_attributes_example/api_catalog_test.exs
+* injecting test/improved_attributes_example/api_catalog_test.exs
+* creating test/support/fixtures/api_catalog_fixtures.ex
+* injecting test/support/fixtures/api_catalog_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/api_product_controller.ex
+* creating lib/improved_attributes_example_web/controllers/api_product_json.ex
+* creating lib/improved_attributes_example_web/controllers/changeset_json.ex
+* creating test/improved_attributes_example_web/controllers/api_product_controller_test.exs
+* creating lib/improved_attributes_example_web/controllers/fallback_controller.ex
+
+Add the resource to the "/api" scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/api_products", ApiProductController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 7 files (.ex)
+Generated improved_attributes_example app
+
+02:19:12.500 [info] == Running 20241129001804 ImprovedAttributesExample.Repo.Migrations.CreateApiProducts.change/0 forward
+
+02:19:12.501 [info] create table api_products
+
+02:19:12.509 [info] == Migrated 20241129001804 in 0.0s
+
+$ mix test
+Compiling 8 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 572072, max_cases: 24
+
+.........................................................................................................................................................................
+Finished in 1.7 seconds (0.3s async, 1.4s sync)
+169 tests, 0 failures
+```
+
+</details>
