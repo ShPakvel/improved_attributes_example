@@ -909,3 +909,65 @@ Finished in 1.9 seconds (0.4s async, 1.5s sync)
 ```
 
 </details>
+
+#### Commit 13
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.json ApiGeneral.ApiLibrary ApiBook api_books name:string:*:index isbn:string:required:unique index_page:integer:default,1:* print_size:decimal:default,13.45:* rate:float:default,5.0:* free:boolean author_real_name:string:redact
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.json ApiGeneral.ApiLibrary ApiBook api_books name:string:*:index isbn:string:required:unique index_page:integer:default,1:* print_size:decimal:default,13.45:* rate:float:default,5.0:* free:boolean author_real_name:string:redact
+* creating lib/improved_attributes_example/api_general/api_library/api_book.ex
+* creating priv/repo/migrations/20241129002312_create_api_books.exs
+* creating lib/improved_attributes_example/api_general/api_library.ex
+* injecting lib/improved_attributes_example/api_general/api_library.ex
+* creating test/improved_attributes_example/api_general/api_library_test.exs
+* injecting test/improved_attributes_example/api_general/api_library_test.exs
+* creating test/support/fixtures/api_general/api_library_fixtures.ex
+* injecting test/support/fixtures/api_general/api_library_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/api_book_controller.ex
+* creating lib/improved_attributes_example_web/controllers/api_book_json.ex
+* creating test/improved_attributes_example_web/controllers/api_book_controller_test.exs
+
+Add the resource to the "/api" scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/api_books", ApiBookController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+02:23:40.712 [info] == Running 20241129002312 ImprovedAttributesExample.Repo.Migrations.CreateApiBooks.change/0 forward
+
+02:23:40.715 [info] create table api_books
+
+02:23:40.721 [info] create index api_books_isbn_index
+
+02:23:40.723 [info] create index api_books_name_index
+
+02:23:40.727 [info] == Migrated 20241129002312 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 555637, max_cases: 24
+
+............................................................................................................................................................................................
+.........
+Finished in 1.9 seconds (0.4s async, 1.5s sync)
+197 tests, 0 failures
+```
+
+</details>
