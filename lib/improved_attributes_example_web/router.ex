@@ -41,6 +41,10 @@ defmodule ImprovedAttributesExampleWeb.Router do
     live "/live_comments/new", LiveCommentLive.Form, :new
     live "/live_comments/:id", LiveCommentLive.Show, :show
     live "/live_comments/:id/edit", LiveCommentLive.Form, :edit
+    live "/live_notes", LiveNoteLive.Index, :index
+    live "/live_notes/new", LiveNoteLive.Form, :new
+    live "/live_notes/:id", LiveNoteLive.Show, :show
+    live "/live_notes/:id/edit", LiveNoteLive.Form, :edit
   end
 
   # Other scopes may use custom stacks.

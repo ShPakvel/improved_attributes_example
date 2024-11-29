@@ -678,3 +678,104 @@ Finished in 1.5 seconds (0.3s async, 1.1s sync)
 ```
 
 </details>
+
+#### Commit 10
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.live LiveBlog LiveNote live_notes body:text:unique review_day:date:unique live_product_id:references:LiveCatalog.LiveProduct:unique live_post_id:references live_book_id:references:assoc,manual:LiveGeneral.LiveLibrary.LiveBook:column,isbn data:any:virtual meta:[array,string]:virtual points:[array,integer] status:enum:[draft,actual,archived] tags:[array,enum]:[[music,1],[dance,2],[movie,3]]
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.live LiveBlog LiveNote live_notes body:text:unique review_day:date:unique live_product_id:references:LiveCatalog.LiveProduct:unique live_post_id:references live_book_id:references:assoc,manual:LiveGeneral.LiveLibrary.LiveBook:column,isbn data:any:virtual meta:[array,string]:virtual points:[array,integer] status:enum:[draft,actual,archived] tags:[array,enum]:[[music,1],[dance,2],[movie,3]]
+At least one attribute has to be specified as required.
+Use option `required` or its alias `*`.
+
+Examples:
+
+    title:string:required
+    name:string:*:unique
+
+None of the given attributes are set to be required,
+Hence first attribute `body:text:unique` is going to be required.
+
+Proceed with chosen required attribute? [Yn] Y
+You are generating into an existing context.
+
+The ImprovedAttributesExample.LiveBlog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/live_blog/live_note.ex
+* creating priv/repo/migrations/20241129001246_create_live_notes.exs
+* injecting lib/improved_attributes_example/live_blog.ex
+* injecting test/improved_attributes_example/live_blog_test.exs
+* injecting test/support/fixtures/live_blog_fixtures.ex
+
+Some of the generated database columns are unique. Please provide
+unique implementations for the following fixture function(s) in
+test/support/fixtures/live_blog_fixtures.ex:
+
+    def unique_live_note_review_day do
+      raise "implement the logic to generate a unique live_note review_day"
+    end
+
+* creating lib/improved_attributes_example_web/live/live_note_live/show.ex
+* creating lib/improved_attributes_example_web/live/live_note_live/index.ex
+* creating lib/improved_attributes_example_web/live/live_note_live/form.ex
+* creating test/improved_attributes_example_web/live/live_note_live_test.exs
+
+Add the live routes to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    live "/live_notes", LiveNoteLive.Index, :index
+    live "/live_notes/new", LiveNoteLive.Form, :new
+    live "/live_notes/:id", LiveNoteLive.Show, :show
+    live "/live_notes/:id/edit", LiveNoteLive.Form, :edit
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+
+02:13:18.853 [info] == Running 20241129001246 ImprovedAttributesExample.Repo.Migrations.CreateLiveNotes.change/0 forward
+
+02:13:18.856 [info] create table live_notes
+
+02:13:18.864 [info] create index live_notes_body_index
+
+02:13:18.866 [info] create index live_notes_review_day_index
+
+02:13:18.867 [info] create index live_notes_live_book_id_index
+
+02:13:18.869 [info] create index live_notes_live_post_id_index
+
+02:13:18.871 [info] create index live_notes_live_product_id_index
+
+02:13:18.874 [info] == Migrated 20241129001246 in 0.0s
+
+$ mix test
+Compiling 1 file (.ex)
+Running ExUnit with seed: 54660, max_cases: 24
+
+...........................................................................................................................................................
+Finished in 1.8 seconds (0.3s async, 1.4s sync)
+155 tests, 0 failures
+```
+
+</details>
