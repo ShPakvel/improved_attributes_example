@@ -21,4 +21,23 @@ defmodule ImprovedAttributesExample.ApiCatalogFixtures do
 
     api_product
   end
+
+  @doc """
+  Generate a api_comment.
+  """
+  def api_comment_fixture(attrs \\ %{}) do
+    api_post = ImprovedAttributesExample.ApiBlogFixtures.api_post_fixture()
+    api_product = api_product_fixture()
+
+    {:ok, api_comment} =
+      attrs
+      |> Enum.into(%{
+        body: "body value",
+        api_post_id: api_post.id,
+        api_product_id: api_product.id
+      })
+      |> ImprovedAttributesExample.ApiCatalog.create_api_comment()
+
+    api_comment
+  end
 end

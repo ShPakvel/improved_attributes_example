@@ -80,4 +80,80 @@ defmodule ImprovedAttributesExample.ApiCatalogTest do
       assert %Ecto.Changeset{} = ApiCatalog.change_api_product(api_product)
     end
   end
+
+  describe "api_comments" do
+    alias ImprovedAttributesExample.ApiCatalog.ApiComment
+
+    import ImprovedAttributesExample.ApiCatalogFixtures
+
+    @invalid_attrs %{body: nil, api_post_id: nil, api_product_id: nil}
+
+    test "list_api_comments/0 returns all api_comments" do
+      api_comment = api_comment_fixture()
+
+      assert ApiCatalog.list_api_comments() == [api_comment]
+    end
+
+    test "get_api_comment!/1 returns the api_comment with given id" do
+      api_comment = api_comment_fixture()
+
+      assert ApiCatalog.get_api_comment!(api_comment.id) == api_comment
+    end
+
+    test "create_api_comment/1 with valid data creates a api_comment" do
+      api_post = ImprovedAttributesExample.ApiBlogFixtures.api_post_fixture()
+      api_product = api_product_fixture()
+
+      create_attrs = %{
+        body: "body value",
+        api_post_id: api_post.id,
+        api_product_id: api_product.id
+      }
+
+      assert {:ok, %ApiComment{} = api_comment} = ApiCatalog.create_api_comment(create_attrs)
+      assert api_comment.body == "body value"
+      assert api_comment.api_post_id == api_post.id
+      assert api_comment.api_product_id == api_product.id
+    end
+
+    test "create_api_comment/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = ApiCatalog.create_api_comment(@invalid_attrs)
+    end
+
+    test "update_api_comment/2 with valid data updates the api_comment" do
+      api_comment = api_comment_fixture()
+
+      api_post = ImprovedAttributesExample.ApiBlogFixtures.api_post_fixture()
+      api_product = api_product_fixture()
+
+      update_attrs = %{
+        body: "updated body value",
+        api_post_id: api_post.id,
+        api_product_id: api_product.id
+      }
+
+      assert {:ok, %ApiComment{} = api_comment} = ApiCatalog.update_api_comment(api_comment, update_attrs)
+      assert api_comment.body == "updated body value"
+      assert api_comment.api_post_id == api_post.id
+      assert api_comment.api_product_id == api_product.id
+    end
+
+    test "update_api_comment/2 with invalid data returns error changeset" do
+      api_comment = api_comment_fixture()
+      assert {:error, %Ecto.Changeset{}} = ApiCatalog.update_api_comment(api_comment, @invalid_attrs)
+
+      assert api_comment == ApiCatalog.get_api_comment!(api_comment.id)
+    end
+
+    test "delete_api_comment/1 deletes the api_comment" do
+      api_comment = api_comment_fixture()
+      assert {:ok, %ApiComment{}} = ApiCatalog.delete_api_comment(api_comment)
+      assert_raise Ecto.NoResultsError, fn -> ApiCatalog.get_api_comment!(api_comment.id) end
+    end
+
+    test "change_api_comment/1 returns a api_comment changeset" do
+      api_comment = api_comment_fixture()
+      assert %Ecto.Changeset{} = ApiCatalog.change_api_comment(api_comment)
+    end
+  end
 end

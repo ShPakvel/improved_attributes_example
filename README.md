@@ -971,3 +971,75 @@ Finished in 1.9 seconds (0.4s async, 1.5s sync)
 ```
 
 </details>
+
+#### Commit 14
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.json ApiCatalog ApiComment api_comments body:string:size,303:* api_product_id:references:*:on_delete,delete_all api_post_id:references:ApiBlog.ApiPost --binary-id
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.json ApiCatalog ApiComment api_comments body:string:size,303:* api_product_id:references:*:on_delete,delete_all api_post_id:references:ApiBlog.ApiPost --binary-id
+You are generating into an existing context.
+
+The ImprovedAttributesExample.ApiCatalog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/api_catalog/api_comment.ex
+* creating priv/repo/migrations/20241129002514_create_api_comments.exs
+* injecting lib/improved_attributes_example/api_catalog.ex
+* injecting test/improved_attributes_example/api_catalog_test.exs
+* injecting test/support/fixtures/api_catalog_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/api_comment_controller.ex
+* creating lib/improved_attributes_example_web/controllers/api_comment_json.ex
+* creating test/improved_attributes_example_web/controllers/api_comment_controller_test.exs
+
+Add the resource to the "/api" scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/api_comments", ApiCommentController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+02:25:39.881 [info] == Running 20241129002514 ImprovedAttributesExample.Repo.Migrations.CreateApiComments.change/0 forward
+
+02:25:39.883 [info] create table api_comments
+
+02:25:39.888 [info] create index api_comments_api_post_id_index
+
+02:25:39.891 [info] create index api_comments_api_product_id_index
+
+02:25:39.895 [info] == Migrated 20241129002514 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 39849, max_cases: 24
+
+............................................................................................................................................................................................
+.......................
+Finished in 2.1 seconds (0.4s async, 1.6s sync)
+211 tests, 0 failures
+```
+
+</details>

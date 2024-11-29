@@ -101,4 +101,100 @@ defmodule ImprovedAttributesExample.ApiCatalog do
   def change_api_product(%ApiProduct{} = api_product, attrs \\ %{}) do
     ApiProduct.changeset(api_product, attrs)
   end
+
+  alias ImprovedAttributesExample.ApiCatalog.ApiComment
+
+  @doc """
+  Returns the list of api_comments.
+
+  ## Examples
+
+      iex> list_api_comments()
+      [%ApiComment{}, ...]
+
+  """
+  def list_api_comments do
+    Repo.all(ApiComment)
+  end
+
+  @doc """
+  Gets a single api_comment.
+
+  Raises `Ecto.NoResultsError` if the Api comment does not exist.
+
+  ## Examples
+
+      iex> get_api_comment!(123)
+      %ApiComment{}
+
+      iex> get_api_comment!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_api_comment!(id), do: Repo.get!(ApiComment, id)
+
+  @doc """
+  Creates a api_comment.
+
+  ## Examples
+
+      iex> create_api_comment(%{field: value})
+      {:ok, %ApiComment{}}
+
+      iex> create_api_comment(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_api_comment(attrs \\ %{}) do
+    %ApiComment{}
+    |> ApiComment.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a api_comment.
+
+  ## Examples
+
+      iex> update_api_comment(api_comment, %{field: new_value})
+      {:ok, %ApiComment{}}
+
+      iex> update_api_comment(api_comment, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_api_comment(%ApiComment{} = api_comment, attrs) do
+    api_comment
+    |> ApiComment.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a api_comment.
+
+  ## Examples
+
+      iex> delete_api_comment(api_comment)
+      {:ok, %ApiComment{}}
+
+      iex> delete_api_comment(api_comment)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_api_comment(%ApiComment{} = api_comment) do
+    Repo.delete(api_comment)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking api_comment changes.
+
+  ## Examples
+
+      iex> change_api_comment(api_comment)
+      %Ecto.Changeset{data: %ApiComment{}}
+
+  """
+  def change_api_comment(%ApiComment{} = api_comment, attrs \\ %{}) do
+    ApiComment.changeset(api_comment, attrs)
+  end
 end
