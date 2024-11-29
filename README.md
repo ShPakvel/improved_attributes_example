@@ -852,3 +852,60 @@ Finished in 1.7 seconds (0.3s async, 1.4s sync)
 ```
 
 </details>
+
+#### Commit 12
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.json ApiBlog ApiPost api_blog_posts title content:text:* public:boolean:default,true topics:integer:default,1 reviewed:datetime tags:array --binary-id
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.json ApiBlog ApiPost api_blog_posts title content:text:* public:boolean:default,true topics:integer:default,1 reviewed:datetime tags:array --binary-id
+* creating lib/improved_attributes_example/api_blog/api_post.ex
+* creating priv/repo/migrations/20241129002121_create_api_blog_posts.exs
+* creating lib/improved_attributes_example/api_blog.ex
+* injecting lib/improved_attributes_example/api_blog.ex
+* creating test/improved_attributes_example/api_blog_test.exs
+* injecting test/improved_attributes_example/api_blog_test.exs
+* creating test/support/fixtures/api_blog_fixtures.ex
+* injecting test/support/fixtures/api_blog_fixtures.ex
+* creating lib/improved_attributes_example_web/controllers/api_post_controller.ex
+* creating lib/improved_attributes_example_web/controllers/api_post_json.ex
+* creating test/improved_attributes_example_web/controllers/api_post_controller_test.exs
+
+Add the resource to the "/api" scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/api_blog_posts", ApiPostController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+02:21:54.384 [info] == Running 20241129002121 ImprovedAttributesExample.Repo.Migrations.CreateApiBlogPosts.change/0 forward
+
+02:21:54.387 [info] create table api_blog_posts
+
+02:21:54.395 [info] == Migrated 20241129002121 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 800698, max_cases: 24
+
+.......................................................................................................................................................................................
+Finished in 1.9 seconds (0.4s async, 1.5s sync)
+183 tests, 0 failures
+```
+
+</details>

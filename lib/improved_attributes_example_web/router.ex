@@ -52,6 +52,7 @@ defmodule ImprovedAttributesExampleWeb.Router do
     pipe_through :api
 
     resources "/api_products", ApiProductController, except: [:new, :edit]
+    resources "/api_blog_posts", ApiPostController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
