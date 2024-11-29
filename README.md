@@ -538,3 +538,68 @@ Finished in 1.1 seconds (0.2s async, 0.9s sync)
 ```
 
 </details>
+
+#### Commit 8
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.live LiveGeneral.LiveLibrary LiveBook live_books name:string:*:index isbn:string:required:unique index_page:integer:default,1:* print_size:decimal:default,13.45:* rate:float:default,5.0:* free:boolean author_real_name:string:redact
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.live LiveGeneral.LiveLibrary LiveBook live_books name:string:*:index isbn:string:required:unique index_page:integer:default,1:* print_size:decimal:default,13.45:* rate:float:default,5.0:* free:boolean author_real_name:string:redact
+* creating lib/improved_attributes_example/live_general/live_library/live_book.ex
+* creating priv/repo/migrations/20241129000421_create_live_books.exs
+* creating lib/improved_attributes_example/live_general/live_library.ex
+* injecting lib/improved_attributes_example/live_general/live_library.ex
+* creating test/improved_attributes_example/live_general/live_library_test.exs
+* injecting test/improved_attributes_example/live_general/live_library_test.exs
+* creating test/support/fixtures/live_general/live_library_fixtures.ex
+* injecting test/support/fixtures/live_general/live_library_fixtures.ex
+* creating lib/improved_attributes_example_web/live/live_book_live/show.ex
+* creating lib/improved_attributes_example_web/live/live_book_live/index.ex
+* creating lib/improved_attributes_example_web/live/live_book_live/form.ex
+* creating test/improved_attributes_example_web/live/live_book_live_test.exs
+
+Add the live routes to your browser scope in lib/improved_attributes_example_web/router.ex:
+
+    live "/live_books", LiveBookLive.Index, :index
+    live "/live_books/new", LiveBookLive.Form, :new
+    live "/live_books/:id", LiveBookLive.Show, :show
+    live "/live_books/:id/edit", LiveBookLive.Form, :edit
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+
+02:04:47.890 [info] == Running 20241129000421 ImprovedAttributesExample.Repo.Migrations.CreateLiveBooks.change/0 forward
+
+02:04:47.892 [info] create table live_books
+
+02:04:47.900 [info] create index live_books_isbn_index
+
+02:04:47.902 [info] create index live_books_name_index
+
+02:04:47.905 [info] == Migrated 20241129000421 in 0.0s
+
+$ mix test
+Compiling 7 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 277234, max_cases: 24
+
+...............................................................................................................................
+Finished in 1.2 seconds (0.3s async, 0.9s sync)
+127 tests, 0 failures
+```
+
+</details>
