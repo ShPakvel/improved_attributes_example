@@ -55,6 +55,7 @@ defmodule ImprovedAttributesExampleWeb.Router do
     resources "/api_blog_posts", ApiPostController, except: [:new, :edit]
     resources "/api_books", ApiBookController, except: [:new, :edit]
     resources "/api_comments", ApiCommentController, except: [:new, :edit]
+    resources "/api_notes", ApiNoteController, except: [:new, :edit]
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

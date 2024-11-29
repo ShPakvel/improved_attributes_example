@@ -1043,3 +1043,102 @@ Finished in 2.1 seconds (0.4s async, 1.6s sync)
 ```
 
 </details>
+
+#### Commit 15
+
+<details>
+
+<summary>
+
+```bash
+$ mix phx.gen.json ApiBlog ApiNote api_notes body:text:unique review_day:date:unique api_product_id:references:ApiCatalog.ApiProduct:unique api_post_id:references api_book_id:references:assoc,manual:ApiGeneral.ApiLibrary.ApiBook:column,isbn data:any:virtual meta:[array,string]:virtual points:[array,integer] status:enum:[draft,actual,archived] tags:[array,enum]:[[music,1],[dance,2],[movie,3]]
+```
+
+</summary>
+
+```bash
+$ mix phx.gen.json ApiBlog ApiNote api_notes body:text:unique review_day:date:unique api_product_id:references:ApiCatalog.ApiProduct:unique api_post_id:references api_book_id:references:assoc,manual:ApiGeneral.ApiLibrary.ApiBook:column,isbn data:any:virtual meta:[array,string]:virtual points:[array,integer] status:enum:[draft,actual,archived] tags:[array,enum]:[[music,1],[dance,2],[movie,3]]
+At least one attribute has to be specified as required.
+Use option `required` or its alias `*`.
+
+Examples:
+
+    title:string:required
+    name:string:*:unique
+
+None of the given attributes are set to be required,
+Hence first attribute `body:text:unique` is going to be required.
+
+Proceed with chosen required attribute? [Yn] Y
+You are generating into an existing context.
+
+The ImprovedAttributesExample.ApiBlog context currently has 6 functions and 1 file in its directory.
+
+  * It's OK to have multiple resources in the same context as long as they are closely related. But if a context grows too large, consider breaking it apart
+
+  * If they are not closely related, another context probably works better
+
+The fact that two entities are related in the database does not mean they belong to the same context.
+
+If you are not sure, prefer creating a new context over adding to the existing one.
+
+Would you like to proceed? [Yn] Y
+* creating lib/improved_attributes_example/api_blog/api_note.ex
+* creating priv/repo/migrations/20241129002739_create_api_notes.exs
+* injecting lib/improved_attributes_example/api_blog.ex
+* injecting test/improved_attributes_example/api_blog_test.exs
+* injecting test/support/fixtures/api_blog_fixtures.ex
+
+Some of the generated database columns are unique. Please provide
+unique implementations for the following fixture function(s) in
+test/support/fixtures/api_blog_fixtures.ex:
+
+    def unique_api_note_review_day do
+      raise "implement the logic to generate a unique api_note review_day"
+    end
+
+* creating lib/improved_attributes_example_web/controllers/api_note_controller.ex
+* creating lib/improved_attributes_example_web/controllers/api_note_json.ex
+* creating test/improved_attributes_example_web/controllers/api_note_controller_test.exs
+
+Add the resource to the "/api" scope in lib/improved_attributes_example_web/router.ex:
+
+    resources "/api_notes", ApiNoteController, except: [:new, :edit]
+
+
+Remember to update your repository by running migrations:
+
+    $ mix ecto.migrate
+
+$ mix ecto.migrate
+Compiling 5 files (.ex)
+Generated improved_attributes_example app
+
+02:28:08.001 [info] == Running 20241129002739 ImprovedAttributesExample.Repo.Migrations.CreateApiNotes.change/0 forward
+
+02:28:08.005 [info] create table api_notes
+
+02:28:08.014 [info] create index api_notes_body_index
+
+02:28:08.016 [info] create index api_notes_review_day_index
+
+02:28:08.019 [info] create index api_notes_api_book_id_index
+
+02:28:08.020 [info] create index api_notes_api_post_id_index
+
+02:28:08.022 [info] create index api_notes_api_product_id_index
+
+02:28:08.027 [info] == Migrated 20241129002739 in 0.0s
+
+$ mix test
+Compiling 6 files (.ex)
+Generated improved_attributes_example app
+Running ExUnit with seed: 42810, max_cases: 24
+
+............................................................................................................................................................................................
+.....................................
+Finished in 2.3 seconds (0.5s async, 1.7s sync)
+225 tests, 0 failures
+```
+
+</details>

@@ -101,4 +101,100 @@ defmodule ImprovedAttributesExample.ApiBlog do
   def change_api_post(%ApiPost{} = api_post, attrs \\ %{}) do
     ApiPost.changeset(api_post, attrs)
   end
+
+  alias ImprovedAttributesExample.ApiBlog.ApiNote
+
+  @doc """
+  Returns the list of api_notes.
+
+  ## Examples
+
+      iex> list_api_notes()
+      [%ApiNote{}, ...]
+
+  """
+  def list_api_notes do
+    Repo.all(ApiNote)
+  end
+
+  @doc """
+  Gets a single api_note.
+
+  Raises `Ecto.NoResultsError` if the Api note does not exist.
+
+  ## Examples
+
+      iex> get_api_note!(123)
+      %ApiNote{}
+
+      iex> get_api_note!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_api_note!(id), do: Repo.get!(ApiNote, id)
+
+  @doc """
+  Creates a api_note.
+
+  ## Examples
+
+      iex> create_api_note(%{field: value})
+      {:ok, %ApiNote{}}
+
+      iex> create_api_note(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_api_note(attrs \\ %{}) do
+    %ApiNote{}
+    |> ApiNote.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a api_note.
+
+  ## Examples
+
+      iex> update_api_note(api_note, %{field: new_value})
+      {:ok, %ApiNote{}}
+
+      iex> update_api_note(api_note, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_api_note(%ApiNote{} = api_note, attrs) do
+    api_note
+    |> ApiNote.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a api_note.
+
+  ## Examples
+
+      iex> delete_api_note(api_note)
+      {:ok, %ApiNote{}}
+
+      iex> delete_api_note(api_note)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_api_note(%ApiNote{} = api_note) do
+    Repo.delete(api_note)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking api_note changes.
+
+  ## Examples
+
+      iex> change_api_note(api_note)
+      %Ecto.Changeset{data: %ApiNote{}}
+
+  """
+  def change_api_note(%ApiNote{} = api_note, attrs \\ %{}) do
+    ApiNote.changeset(api_note, attrs)
+  end
 end
